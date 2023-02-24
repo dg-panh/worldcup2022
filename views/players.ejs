@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./import.ejs') %>
+
+    <title><%= title %></title>
+  </head>
+
+  <body>
+    <%- include('./header.ejs') %>
+
+    <!---->
+    <div class="container">
+      <div class="flex justify-end w-full items-center pt-10">
+        <button
+          data-target="modal-js-example"
+          type="button"
+          class="js-modal-trigger inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-7 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+          Add new player
+        </button>
+      </div>
+      <div
+        class="mb-5 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8"
+      >
+        <% players.forEach(function(player){ %>
+        <!--  -->
+        <%- include('./player.ejs', { player, }) %>
+        <!--  -->
+        <% })%>
+      </div>
+    </div>
+    <%- include('./createPlayer.ejs') %>
+    <!--  -->
+    <%- include('./footer.ejs') %>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <%- include('./script.ejs') %>
+  </body>
+</html>

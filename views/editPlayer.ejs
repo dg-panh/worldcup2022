@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('./import.ejs') %>
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <%- include('./header.ejs') %>
+
+     <div class="box">
+      <div class="heading">
+        <h1 class="text-xl font-bold text-green-500">Create player</h1>
+      </div>
+      <div class="column">
+        <form method="post" class="flex flex-col gap-10">
+          <div class="max-w-xl">
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-700 mb-2"
+              >Name</label
+            >
+            <div class="mt-1">
+              <input
+                name="name"
+                type="text"
+                value="<%=player.name%>"
+                placeholder="e.g USA"
+                required
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+          <!-- ----- -->
+          <div class="max-w-xl">
+            <label class="text-base font-medium text-gray-900">Captain</label>
+
+            <div
+              class="space-y-4 mt-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-10"
+            >
+              <div class="flex items-center">
+                <input
+                  id="email"
+                  name="isCaptain"
+                  
+                  type="radio"
+                  value="true"
+                  checked="<%= player.isCaptain === true ? 'checked' : '' %>"
+                  class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                />
+                <label
+                  for="email"
+                  class="ml-3 block text-sm font-medium text-gray-700"
+                  >yes</label
+                >
+              </div>
+
+              <div class="flex items-center">
+                <input
+                  id="sms"
+                  name="isCaptain"
+                  checked="<%= player.isCaptain === false ? 'checked' : '' %>"
+                  type="radio"
+                  value="false"
+                  class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                />
+                <label
+                  for="sms"
+                  class="ml-3 block text-sm font-medium text-gray-700"
+                  >No</label
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="max-w-xl">
+            <label for="club" class="block text-sm font-medium text-gray-700"
+              >Club</label
+            >
+            <select
+              name="club"
+              class="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            >
+             <% clubs.forEach(club => { %>
+<option value="<%= club.name %>" <%= JSON.stringify(club.name) === JSON.stringify(player.club) ? 'selected' : '' %>><%= club.name %></option>                                                    <% }) %>
+            </select>
+          </div>
+
+          <div class="max-w-xl">
+            <label
+              for="position"
+              class="block text-sm font-medium text-gray-700"
+              >Position</label
+            >
+            <select
+              name="position"
+              class="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+            >
+               <% positions.forEach(position => { %>
+    <option value="<%= position.name %>" <%= JSON.stringify(position.name) === JSON.stringify(player.position) ? 'selected' : '' %>><%=position.name %></option>                                                    <% }) %>
+            </select>
+          </div>
+
+          <div class="max-w-xl">
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-700 mb-2"
+              >Goals</label
+            >
+            <div class="mt-1">
+              <input
+                name="goals"
+                type="number"
+                value="<%= player.goals%>"
+                placeholder="e.g. 100"
+                required
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div class="max-w-xl">
+            <label
+              for="email"
+              class="block text-sm font-medium text-gray-700 mb-2"
+              value=" <%=player.image %>"
+              >Image</label
+            >
+            <div class="mt-1">
+              <input
+                name="image"
+                value="<%= player.image%>"
+                type="text"
+                placeholder="URL of image"
+                required
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div class="flex justify-end gap-7 max-w-xl">
+             <a
+            href="/"
+              class="control inline-flex items-center rounded-md border border-transparent bg-red-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Cancel
+            </a>
+            <button
+              type="submit"
+              class="control inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Update
+            </button>
+           
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+   
+    <%- include('./footer.ejs') %>
+</body>
+
+</html>

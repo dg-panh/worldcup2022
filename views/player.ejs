@@ -1,0 +1,51 @@
+<div class="flex flex-col">
+  <div class="group relative mt-5">
+    <div
+      class="h-56 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-72 xl:h-80"
+    >
+      <img
+        src="<%=player.image %>"
+        alt="Hand stitched, orange leather long wallet."
+        class="h-full w-full object-cover object-center"
+      />
+    </div>
+    <h3 class="mt-4 text-xl text-gray-700">
+      <a href="#">
+        <span class="absolute inset-0"></span>
+        <%=player.name %>
+      </a>
+    </h3>
+    <div class="flex items-center gap-2">
+      <label class="mt-1 text-sm font-bold">Club:</label>
+      <p class="mt-1 text-sm text-gray-500"><%= player.club %></p>
+    </div>
+    <div class="flex items-center gap-2">
+      <label class="mt-1 text-sm font-bold">Position:</label>
+      <p class="mt-1 text-sm text-gray-500"><%= player.position %></p>
+    </div>
+    <div class="flex items-center gap-2">
+      <label class="mt-1 text-sm font-bold">Goals:</label>
+      <p class="mt-1 text-sm text-gray-500"><%= player.goals %></p>
+    </div>
+    <div class="flex items-center gap-2">
+      <label class="mt-1 text-sm font-bold">Captain:</label>
+      <p class="mt-1 text-sm text-gray-500">
+        <%= player.isCaptain ? "yes" : "no" %>
+      </p>
+    </div>
+  </div>
+  <div class="flex gap-2 mt-4">
+    <a
+      href="/player/<%=player.id%>"
+      class="w-full text-center items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+    >
+      Edit
+    </a>
+    <a
+      href="/delete/<%=player.id%>"
+      class="w-full text-center items-center rounded-md border border-transparent bg-red-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+    >
+      Delete
+    </a>
+  </div>
+</div>
