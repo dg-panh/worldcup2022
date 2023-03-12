@@ -53,7 +53,12 @@ class playerController {
     player
       .save()
       .then(() => res.redirect("/"))
-      .catch((error) => {});
+      .catch((error) => {
+        res.render("error", {
+          message: error.message,
+          error: error
+        });
+      });
   }
   update(req, res, next) {
     Players.findByIdAndUpdate(req.params.id, req.body, function (err, result) {

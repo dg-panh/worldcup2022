@@ -25,12 +25,21 @@ class nationController {
     nation
       .save()
       .then(() => res.redirect("/nations"))
-      .catch((error) => {});
+      .catch((error) => {
+        res.render("error", {
+          message: error.message,
+          error: error
+        })
+      });
   }
   update(req, res, next) {
     Nations.findByIdAndUpdate(req.params.id, req.body, function (err, result) {
       if (err) {
         console.log(err);
+        res.render("error", {
+          message: error.message,
+          error: error
+        });
       } else {
         res.redirect("/nations");
       }
