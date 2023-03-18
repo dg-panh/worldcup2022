@@ -1,4 +1,5 @@
 const Players = require("../models/player");
+const Nations = require('../models/nation');
 
 const clubs = [
   { id: "1", name: "Barcelona" },
@@ -24,26 +25,30 @@ const positions = [
 ];
 
 class playerController {
-  index(req, res, next) {
-    Players.find({})
+  async index(req, res, next) {
+    const nations = await Nations.find();
+    Players.find({}).populate('nations')
       .then((players) => {
         res.render("players", {
           title: "The list of Players",
           players: players,
           positions: positions,
           clubs: clubs,
+          nations: nations
         });
       })
       .catch(next);
   }
-  getPlayer(req, res, next) {
-    Players.findById(req.params.id)
+  async getPlayer(req, res, next) {
+    const nations = await Nations.find();
+    Players.findById(req.params.id).populate('nations')
       .then((player) => {
         res.render("editPlayer", {
           title: "The Player",
           player: player,
           positions: positions,
           clubs: clubs,
+          nations: nations
         });
       })
       .catch(next);

@@ -57,6 +57,18 @@
           </div>
 
           <div class="max-w-xl">
+            <label for="nations" class="block text-sm font-medium text-gray-700">Nation</label>
+            <select id="nations" name="nations" required
+              class="block w-full py-2 pl-3 pr-10 mt-1 text-base border border-gray-300 rounded-md focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+              <% nations.forEach((nation,i)=> { %>
+                <option value="<%= nation._id%>">
+                  <%= nation.name%>
+                </option>
+                <% }); %>
+            </select>
+          </div>
+
+          <div class="max-w-xl">
             <label for="position" class="block text-sm font-medium text-gray-700">Position</label>
             <select name="position"
               class="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">

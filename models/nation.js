@@ -12,4 +12,4 @@ const nationSchema = mongoose.Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.model("Nation", nationSchema);
+module.exports = mongoose.model("nations", nationSchema);

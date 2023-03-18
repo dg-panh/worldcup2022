@@ -25,7 +25,12 @@ const playerSchema = new Schema({
     isCaptain: {
         type: Boolean,
         default: false
-    }
+    },
+    nations: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "nations",
+        require: true,
+    },
 }, {
     timestamps: true
 });

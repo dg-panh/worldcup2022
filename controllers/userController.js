@@ -24,7 +24,7 @@ class UserController {
     }
 
     async renderUpdatePassword(req, res, next) {
-        const user = await User.findOne({ username: res.locals.user,username });
+        const user = await User.findOne({ username: res.locals.user.username });
         res.render('updatePassword', {
             username: user.username,
             password: '',
@@ -132,6 +132,9 @@ class UserController {
                     res.render('register', {
                         username: username,
                         password: password,
+                        confirmPassword: confirmPassword,
+                        name: name,
+                        YOB: YOB,
                         errors: errors
                     })
                 } else {
@@ -169,7 +172,12 @@ class UserController {
         );
 
         if(user) {
-            res.redirect('user/profile');
+            res.render('myProfile', {
+                username: user.username,
+                name: user.name,
+                YOB: user.YOB,
+                errors: {}
+            })
         }
     }
 
@@ -204,12 +212,22 @@ class UserController {
                 { password: hashedPassword },
                 { new: true}
             );
-            if(newUser) {
-                res.redirect('/user/profile');
+            if (newUser) {
+                if (req.session) {
+                  req.session.destroy();
+                  res.clearCookie("session-id");
+                  res.redirect("/");
+                }
             }
         } catch (err) {
             console.log(err);
         }
+    }
+
+    list(req, res, next) {
+        User.find()
+          .then((users) => res.render('userList', { users, title: 'Users' }))
+          .catch(next);
     }
 }
 

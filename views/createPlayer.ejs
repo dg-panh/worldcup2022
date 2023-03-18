@@ -6,6 +6,7 @@
       <div class="heading">
         <h1 class="text-xl font-bold text-green-500">Create player</h1>
       </div>
+      <% if(isAuth==true && isAdmin===true) { %>
       <div class="column">
         <form method="post" class="flex flex-col gap-10">
           <div>
@@ -94,6 +95,18 @@
             </select>
           </div>
 
+          <div class="flex flex-col w-full align-start text-start">
+            <label for="nations" class="block text-sm font-medium text-gray-700">Nation</label>
+            <select id="nations" name="nations" required
+              class="block w-full py-2 pl-3 pr-10 mt-1 text-base border border-gray-300 rounded-md focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+              <% nations.forEach((nation,i)=> { %>
+                <option value="<%= nation._id%>">
+                  <%= nation.name%>
+                </option>
+                <% }); %>
+            </select>
+          </div>
+
           <div>
             <label
               for="email"
@@ -138,6 +151,12 @@
           </div>
         </form>
       </div>
+      <% } else {%>
+        <div>
+          <p>You don't have permission to access this page</p>
+        </div>
+      <% }%>
+
     </div>
   </div>
 
